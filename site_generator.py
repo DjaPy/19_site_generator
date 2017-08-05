@@ -31,7 +31,7 @@ def get_structure_site(config_tree):
             os.mkdir('site/{}'.format(folder_name_tuple))
 
 
-def get_templates():
+def get_templates(INDEX_TEMPLATE_HTML, ARTICLE_TEMPLATE_HTML):
     loader = FileSystemLoader('templates', encoding='utf-8',followlinks=True)
     env = Environment(loader=loader, trim_blocks=True, lstrip_blocks=True)
     index_template = env.get_template(INDEX_TEMPLATE_HTML)
@@ -77,4 +77,20 @@ def create_article(template, content, path):
 
 
 if __name__ == '__main__':
-    pass
+    try:
+        config_tree = get_json_config(CONFIG_FILE)
+    except(FileNotFoundError):
+        print('Ops! You should check the file for correctness.')
+    else:
+        get_structure_site(config_tree)
+        index_content = get_index_page_content(config_tree, INDEX_CSS_PATHWAY)
+        index_template, article_template = get_templates(INDEX_TEMPLATE_HTML,
+                                                         ARTICLE_TEMPLATE_HTML)
+        create_index(index_template, index_content)
+        articles = config_tree['articles']
+        for article in articles:
+            content_in_md = get_article_in_md(article)
+            article_content, pathway = get_article_content(content_in_md,
+                                                           article,
+                                                           ARTICLE_CSS_PATHWAY)
+            create_article(article_template, article_content,pathway)
