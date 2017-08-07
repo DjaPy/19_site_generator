@@ -8,8 +8,8 @@ import markdown
 INDEX_TEMPLATE_HTML = 'index.html'
 ARTICLE_TEMPLATE_HTML = 'article.html'
 CONFIG_FILE = 'config.json'
-INDEX_CSS_PATHWAY = './static/css'
-ARTICLE_CSS_PATHWAY = '../css'
+INDEX_CSS_PATHWAY = 'static/bootstrap-3.3.7/css'
+ARTICLE_CSS_PATHWAY = '../../static/bootstrap-3.3.7/css'
 
 
 def get_json_config(path_json):
@@ -20,10 +20,10 @@ def get_json_config(path_json):
 def get_structure_site(config_tree):
     if not os.path.exists('site'):
         os.mkdir('site')
-    if not os.path.exists('static'):
-        os.mkdir('static')
-    if not os.path.exists('static/css'):
-        shutil.copytree('template/css', 'static/css')
+    # if not os.path.exists('static'):
+    #     os.mkdir('static')
+    # if not os.path.exists('static/css'):
+    #     shutil.copytree('stati/', 'static/css')
     for path_to_folder in config_tree['articles']:
         article = path_to_folder['source']
         folder_name_tuple = os.path.split(article)[0]
@@ -65,7 +65,7 @@ def get_article_content(article_in_md, article, ARTICLE_CSS_PATHWAY):
     title = article['title']
     content = {'title': title,
                'content': content,
-               'article_css_folder': ARTICLE_CSS_PATHWAY}
+               'article_css': ARTICLE_CSS_PATHWAY}
     root, extension = os.path.splitext(article['source'])
     return content, root
 
@@ -87,10 +87,11 @@ if __name__ == '__main__':
         index_template, article_template = get_templates(INDEX_TEMPLATE_HTML,
                                                          ARTICLE_TEMPLATE_HTML)
         create_index(index_template, index_content)
+
         articles = config_tree['articles']
         for article in articles:
             content_in_md = get_article_in_md(article)
             article_content, pathway = get_article_content(content_in_md,
                                                            article,
                                                            ARTICLE_CSS_PATHWAY)
-            create_article(article_template, article_content,pathway)
+            create_article(article_template, article_content, pathway)

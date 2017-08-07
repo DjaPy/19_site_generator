@@ -8,13 +8,13 @@
     <meta name="description" content="Wiki for Devman.org">
     <meta name="author" content="Sergey Ivanov">
 
-    <title>{{article}}</title>
+    <title></title>
 
     <!-- Bootstrap core CSS -->
-    <link href={{"{}/bootstrap.css".format(article_css)}} rel="stylesheet">
+    <link href=../../static/bootstrap-3.3.7/css/bootstrap.css rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href={{"{}jumbotron-narrow.css".format(article_css)}} rel="stylesheet">
+    <link href=../../static/bootstrap-3.3.7/cssjumbotron-narrow.css rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -36,7 +36,15 @@
       <hr>
 
         <div class="col-md-8 col-md-offset-2">
-            {{content}}
+            <p>История изменений в коде очень важна при работе в команде. По ней программисты ориентируются.</p>
+<p>Такие емкие комментарии как "исправлено", "обновлено", "сделано" не только бесполезны, но
+они заставляют вычитывать код чтобы разобраться в смысле изменений внесенных кем-то другим. 
+Это время и нервы помноженные на размер команды. Не делай так!</p>
+<p>Вот тут написано как надо делать:</p>
+<ul>
+<li><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">A Note About Git Commit Messages</a> (en)</li>
+<li><a href="http://chris.beams.io/posts/git-commit/">How to Write a Git Commit Message</a> (en)</li>
+</ul>
           <hr>
           <a href="../../index.html"><button type="button" class="btn btn-primary">Назад</button></a>
         </div> <!-- /container -->
