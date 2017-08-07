@@ -8,7 +8,7 @@
     <meta name="description" content="Wiki for Devman.org">
     <meta name="author" content="Sergey Ivanov">
 
-    <title>{{article}}</title>
+    <title>{{ title }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href={{"{}/bootstrap.css".format(article_css)}} rel="stylesheet">
@@ -29,14 +29,17 @@
 
   <body>
 
+
     <div class="container">
       <div class="header clearfix">
         <h3 class="text-muted">devman</h3>
       </div>
       <hr>
 
+
         <div class="col-md-8 col-md-offset-2">
-            {{content}}
+            <h1>{{ title|e }}</h1>
+            {{ content }}
           <hr>
           <a href="../../index.html"><button type="button" class="btn btn-primary">Назад</button></a>
         </div> <!-- /container -->
