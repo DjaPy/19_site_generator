@@ -1,5 +1,4 @@
 import os
-import shutil
 from jinja2 import FileSystemLoader, Environment
 import json
 import markdown
@@ -20,10 +19,6 @@ def get_json_config(path_json):
 def get_structure_site(config_tree):
     if not os.path.exists('site'):
         os.mkdir('site')
-    # if not os.path.exists('static'):
-    #     os.mkdir('static')
-    # if not os.path.exists('static/css'):
-    #     shutil.copytree('stati/', 'static/css')
     for path_to_folder in config_tree['articles']:
         article = path_to_folder['source']
         folder_name_tuple = os.path.split(article)[0]
